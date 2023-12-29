@@ -1,11 +1,14 @@
 let proxy = require("express-http-proxy");
 let app = require("express")();
 
-const proxyUrl = "https://nyaa.si";
+const urlToProxy = "https://nyaa.si";
 
-app.use("/", proxy(proxyUrl));
+// proxy the base path
+app.use("/", proxy(urlToProxy));
 
 const port = process.env.PORT || 8000;
+
+// Express server started
 app.listen(port, () => {
   console.log(`Proxy server is running at http://localhost:${port}`);
 });
