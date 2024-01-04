@@ -4,12 +4,13 @@
   "description": "Nyaa proxy deployable to vercel.app",
   "main": "index.js",
   "scripts": {
+    "dev": "node --watch index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Zaid",
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.2",
-    "express-http-proxy": "^2.0.0"
+    "http-proxy-middleware": "^2.0.6"
   }
 }
