@@ -1,10 +1,4 @@
-let proxy = require("express-http-proxy");
 let app = require("express")();
-
-const urlToProxy = "https://nyaa.si";
-
-// proxy the base path
-app.use("/", proxy(urlToProxy));
 
 const port = process.env.PORT || 8000;
 

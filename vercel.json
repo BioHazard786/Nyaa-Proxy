@@ -8,6 +8,10 @@
   ],
   "rewrites": [
     {
+      "source": "/",
+      "destination": "https://nyaa.si"
+    },
+    {
       "source": "/:path*",
       "destination": "https://nyaa.si/:path*"
     }

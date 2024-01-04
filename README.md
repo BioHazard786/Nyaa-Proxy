@@ -14,7 +14,7 @@
   <h3 align="center">Nyaa Proxy</h3>
 
   <p align="center">
-    Easily deployable nyaa proxy to access nyaa from blocked regions
+    Easily deployable nyaa proxy to access nyaa from blocked regions powered by vercel rewrites
     <br />
     <br />
     <a href="https://nyaa-proxy.vercel.app/">View Demo</a>
