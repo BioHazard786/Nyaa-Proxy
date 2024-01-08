@@ -31,7 +31,7 @@
 
 ## Deploy to Koyeb
 
-[![Deploy to Koyeb](https://www.koyeb.com/static/images/deploy/button.svg)](https://app.koyeb.com/deploy?type=git&repository=github.com/BiioHazard786/Nyaa-Prox&branch=master&name=Nyaa-Proxy&builder=dockerfile&ports=8000;http;/)
+[![Deploy to Koyeb](https://www.koyeb.com/static/images/deploy/button.svg)](https://app.koyeb.com/deploy?type=git&repository=github.com/BiioHazard786/Nyaa-Proxy&branch=master&name=Nyaa-Proxy&builder=dockerfile&ports=8000;http;/)
 
 ## License
 
