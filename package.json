@@ -2,9 +2,9 @@
   "name": "nyaa-proxy",
   "version": "1.0.0",
   "description": "Nyaa proxy deployable to vercel.app",
-  "main": "index.js",
+  "main": "proxy.js",
   "scripts": {
-    "dev": "node --watch index.js",
+    "dev": "node --watch proxy.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Zaid",
