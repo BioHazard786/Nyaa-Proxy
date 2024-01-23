@@ -3,7 +3,7 @@ const { createProxyMiddleware } = require("http-proxy-middleware");
 const express = require("express");
 
 const app = express();
-const urlToProxy = "https://nyaa.si";
+const urlToProxy = process.env.PROXYURL || "https://nyaa.si";
 
 // proxy the base path
 app.use(

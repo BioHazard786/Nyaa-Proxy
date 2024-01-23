@@ -4,7 +4,7 @@ const { createProxyMiddleware } = require("http-proxy-middleware");
 
 const app = express();
 const port = process.env.PORT || 8000;
-const urlToProxy = "https://nyaa.si";
+const urlToProxy = process.env.PROXYURL || "https://nyaa.si";
 
 app.use(
   "*",
