@@ -33,6 +33,10 @@
 
 [![Deploy to Koyeb](https://www.koyeb.com/static/images/deploy/button.svg)](https://app.koyeb.com/deploy?type=git&repository=github.com/BiioHazard786/Nyaa-Proxy&branch=master&name=Nyaa-Proxy&builder=dockerfile&ports=8000;http;/)
 
+## Deploy to Cloudflare Workers
+
+[![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/BiioHazard786/Nyaa-Proxy)
+
 ## Note
 
 If you want to proxy another url. Change the PROXYURL in `proxy.js`, `index.js` and `vercel.json`

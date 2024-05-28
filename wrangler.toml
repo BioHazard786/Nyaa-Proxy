@@ -1,0 +1,7 @@
+name = "nyaa-proxy"
+workers_dev = true
+compatibility_date = "2024-05-28"
+main = "worker.js"
+
+[placement]
+mode = "smart"

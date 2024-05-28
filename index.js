@@ -4,6 +4,7 @@ const express = require("express");
 
 const app = express();
 const urlToProxy = process.env.PROXYURL || "https://nyaa.si";
+const port = process.env.PORT || 8000;
 
 // proxy the base path
 app.use(
@@ -13,8 +14,6 @@ app.use(
     changeOrigin: true,
   })
 );
-
-const port = process.env.PORT || 8000;
 
 // Express server started
 app.listen(port, () => {
