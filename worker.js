@@ -1,3 +1,4 @@
+// For Cloudflare workers
 const urlToProxy = "https://nyaa.si";
 
 async function handleRequest(request) {
