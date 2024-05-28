@@ -35,7 +35,7 @@
 
 ## Deploy to Cloudflare Workers
 
-[![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/BiioHazard786/Nyaa-Proxy)
+[![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/BioHazard786/Nyaa-Proxy)
 
 ## Note
 
