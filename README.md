@@ -27,19 +27,37 @@
 
 ## Deploy to Vercel
 
-[![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/BiioHazard786/Nyaa-Proxy)
+[![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/BioHazard786/Nyaa-Proxy)
 
 ## Deploy to Koyeb
 
-[![Deploy to Koyeb](https://www.koyeb.com/static/images/deploy/button.svg)](https://app.koyeb.com/deploy?type=git&repository=github.com/BiioHazard786/Nyaa-Proxy&branch=master&name=Nyaa-Proxy&builder=dockerfile&ports=8000;http;/)
+[![Deploy to Koyeb](https://www.koyeb.com/static/images/deploy/button.svg)](https://app.koyeb.com/deploy?type=git&repository=github.com/BioHazard786/Nyaa-Proxy&branch=master&name=Nyaa-Proxy&builder=dockerfile&ports=8000;http;/)
 
-## Deploy to Cloudflare Workers
+## Deploying a Worker
+
+### Manual Deployment (recommended)
+
+To manually deploy the worker:
+
+1. Sign up at the [Cloudflare signup page](https://www.cloudflare.com/sign-up)
+2. From the main navbar, choose **Workers & Pages**
+3. Click the **Create Application** button
+4. Click the **Create Worker** button
+5. Copy the [worker.js](https://github.com/uoosef/bepass-worker/blob/main/dist/worker.js) file contents from this repository
+6. Fill in a name for your worker and click the **Deploy** button
+7. Click the **Quick Edit** button
+8. Paste your clipboard contents and replace the worker's default code
+9. Click the **Save and Deploy** button
+10. Write down the newly created worker address, it should be something like **[name].[username].workers.dev**
+11. Change your Bepass configuration to **https://[name].[username].workers.dev/dns-query**
+
+### One-Click Deploy (experienced users only)
 
 [![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/BioHazard786/Nyaa-Proxy)
 
 ## Note
 
-If you want to proxy another url. Change the PROXYURL in `proxy.js`, `index.js` and `vercel.json`
+If you want to proxy another url. Change the PROXYURL in `proxy.js`, `index.js`, `worker.js` and `vercel.json`
 
 ## License
 
