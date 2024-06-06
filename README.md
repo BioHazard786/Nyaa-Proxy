@@ -48,8 +48,6 @@ To manually deploy the worker:
 7. Click the **Quick Edit** button
 8. Paste your clipboard contents and replace the worker's default code
 9. Click the **Save and Deploy** button
-10. Write down the newly created worker address, it should be something like **[name].[username].workers.dev**
-11. Change your Bepass configuration to **https://[name].[username].workers.dev/dns-query**
 
 ### One-Click Deploy (experienced users only)
 
