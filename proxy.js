@@ -6,6 +6,7 @@ const {
 } = require("http-proxy-middleware");
 
 const app = express();
+app.enable("trust proxy");
 const port = process.env.PORT || 8000;
 const urlToProxy = process.env.PROXYURL || "https://nyaa.si";
 
