@@ -6,6 +6,7 @@ const {
 const express = require("express");
 
 const app = express();
+app.enable("trust proxy");
 const urlToProxy = process.env.PROXYURL || "https://nyaa.si";
 const port = process.env.PORT || 8000;
 
@@ -25,6 +26,7 @@ const options = {
       if (isRssFeedUrl(req.url)) {
         const response = responseBuffer.toString("utf8");
         const proxiedUrl = `${req.protocol}://${req.get("host")}`;
+        console.log(proxiedUrl);
         return response.replaceAll(urlToProxy, proxiedUrl);
       } else {
         return responseBuffer.toString("utf-8");
