@@ -18,7 +18,7 @@ const isRssFeedUrl = (url) => {
 
 // Proxy middleware configuration
 const options = {
-  target: urlToProxy.toString(),
+  target: urlToProxy,
   changeOrigin: true,
   selfHandleResponse: true,
   onProxyRes: responseInterceptor(

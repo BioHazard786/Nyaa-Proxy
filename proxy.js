@@ -17,21 +17,28 @@ const isRssFeedUrl = (url) => {
 };
 
 // Proxy middleware configuration
+// If you wnat to enable proxy on rss on nyaa
+// const options = {
+//   target: urlToProxy,
+//   changeOrigin: true,
+//   selfHandleResponse: true,
+//   onProxyRes: responseInterceptor(
+//     async (responseBuffer, proxyRes, req, res) => {
+//       if (isRssFeedUrl(req.url)) {
+//         const response = responseBuffer.toString("utf8");
+//         const proxiedUrl = `${req.protocol}://${req.get("host")}`;
+//         return response.replaceAll(urlToProxy, proxiedUrl);
+//       } else {
+//         return responseBuffer.toString("utf-8");
+//       }
+//     }
+//   ),
+// };
+
+// Normal Proxy
 const options = {
-  target: urlToProxy.toString(),
+  target: urlToProxy,
   changeOrigin: true,
-  selfHandleResponse: true,
-  onProxyRes: responseInterceptor(
-    async (responseBuffer, proxyRes, req, res) => {
-      if (isRssFeedUrl(req.url)) {
-        const response = responseBuffer.toString("utf8");
-        const proxiedUrl = `${req.protocol}://${req.get("host")}`;
-        return response.replaceAll(urlToProxy, proxiedUrl);
-      } else {
-        return responseBuffer.toString("utf-8");
-      }
-    }
-  ),
 };
 
 app.use("*", createProxyMiddleware(options));

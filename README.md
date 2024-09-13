@@ -63,7 +63,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Contact
 
-Mohd Zaid - [@LuLu786](https://t.me/LuLu786) - bzatch70@gmail.com
+Mohd Zaid - [Telegram](https://t.me/LuLu786) - bzatch70@gmail.com
 
 Project Link : [https://github.com/BioHazard786/Nyaa-Proxy](https://github.com/BioHazard786/Nyaa-Proxy)
 
