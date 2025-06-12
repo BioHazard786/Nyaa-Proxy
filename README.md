@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/f96ae740-f58f-48b2-826a-0caccece96e3/deploy-status)](https://app.netlify.com/projects/nyaa-proxy/deploys)
+
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
@@ -17,7 +19,7 @@
     Easily deployable nyaa proxy to access nyaa from blocked regions powered by vercel rewrites
     <br />
     <br />
-    <a href="https://nyaa-proxy.vercel.app/">View Demo</a>
+    <a href="https://nyaa-proxy.netlify.app/">View Demo</a>
     ·
     <a href="https://github.com/BioHazard786/Nyaa-Proxy/issues">Report Bug</a>
     ·
@@ -59,7 +61,7 @@ To manually deploy the worker:
 
 ## Note
 
-If you want to proxy another url. Change the PROXYURL in `proxy.js`, `index.js`, `worker.js`, `vercel.json` and `_redirects` file.
+If you want to proxy another url. Change the PROXYURL in `proxy.js`, `index.js`, `worker.js`, `vercel.json` and `netlify/functions/proxy.js` file.
 
 ## License
 
