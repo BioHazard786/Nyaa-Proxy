@@ -29,6 +29,10 @@
 
 [![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/BioHazard786/Nyaa-Proxy)
 
+## Deploy to Netlify
+
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/BioHazard786/Nyaa-Proxy)
+
 ## Deploy to Koyeb
 
 [![Deploy to Koyeb](https://www.koyeb.com/static/images/deploy/button.svg)](https://app.koyeb.com/deploy?type=git&repository=github.com/BioHazard786/Nyaa-Proxy&branch=master&name=Nyaa-Proxy&builder=dockerfile&ports=8000;http;/)
@@ -55,7 +59,7 @@ To manually deploy the worker:
 
 ## Note
 
-If you want to proxy another url. Change the PROXYURL in `proxy.js`, `index.js`, `worker.js` and `vercel.json`
+If you want to proxy another url. Change the PROXYURL in `proxy.js`, `index.js`, `worker.js`, `vercel.json` and `_redirects` file.
 
 ## License
 
