@@ -88,9 +88,12 @@ export default async (req, context) => {
         Connection: "keep-alive",
         "Upgrade-Insecure-Requests": "1",
         // Forward some original headers
-        ...(req.headers.get("referer") && { Referer: req.headers.get("referer") }),
+        ...(req.headers.get("referer") && {
+          Referer: req.headers.get("referer"),
+        }),
       },
-      body: req.method !== "GET" && req.method !== "HEAD" ? req.body : undefined,
+      body:
+        req.method !== "GET" && req.method !== "HEAD" ? req.body : undefined,
     });
 
     const contentType = response.headers.get("content-type") || "";
@@ -144,8 +147,12 @@ export default async (req, context) => {
     console.error("Proxy error:", error);
 
     // Return a more user-friendly error for rate limiting
-    if (error.message && (error.message.includes("429") || error.message.includes("ECONNRESET"))) {
-      return new Response(`
+    if (
+      error.message &&
+      (error.message.includes("429") || error.message.includes("ECONNRESET"))
+    ) {
+      return new Response(
+        `
         <html>
           <head><title>Service Temporarily Unavailable</title></head>
           <body>
@@ -158,10 +165,12 @@ export default async (req, context) => {
             </script>
           </body>
         </html>
-      `, {
-        status: 503,
-        headers: { "Content-Type": "text/html" },
-      });
+      `,
+        {
+          status: 503,
+          headers: { "Content-Type": "text/html" },
+        }
+      );
     }
 
     return new Response(JSON.stringify({ error: "Internal server error" }), {
