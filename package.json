@@ -2,6 +2,7 @@
   "name": "nyaa-proxy",
   "version": "1.0.0",
   "description": "Nyaa proxy deployable to vercel.app",
+  "type": "module",
   "main": "proxy.js",
   "scripts": {
     "dev": "node --watch proxy.js",
@@ -10,7 +11,7 @@
   "author": "Zaid",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.2",
-    "http-proxy-middleware": "^2.0.6"
+    "@hono/node-server": "^1.16.0",
+    "hono": "^4.8.5"
   }
 }

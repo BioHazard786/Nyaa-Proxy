@@ -1,4 +1,6 @@
-// Modern ES Module version using native fetch and Web APIs
+import { Hono } from "jsr:@hono/hono";
+import { handle } from "jsr:@hono/hono/netlify";
+
 // Function to rewrite URLs in HTML content
 function rewriteUrls(html, originalDomain, proxyDomain) {
   // Replace absolute URLs pointing to the original domain
@@ -61,9 +63,12 @@ function rewriteCssUrls(css, originalDomain, proxyDomain) {
   return css;
 }
 
-// Modern ES Module export with Web API
-export default async (req, context) => {
-  const url = new URL(req.url);
+// Create Hono app
+const app = new Hono();
+
+// Handle all routes
+app.all("*", async (c) => {
+  const url = new URL(c.req.url);
   const path = url.pathname;
   const queryParams = url.search;
 
@@ -72,12 +77,12 @@ export default async (req, context) => {
   const targetUrl = `${urlToProxy}${path || "/"}${queryParams || ""}`;
 
   // Get the current proxy URL (where this function is deployed)
-  const proxyUrl = `https://${req.headers.get("host")}`;
+  const proxyUrl = `https://${c.req.header("host")}`;
 
   try {
     // Add custom headers to appear more like a regular browser
     const response = await fetch(targetUrl, {
-      method: req.method,
+      method: c.req.method,
       headers: {
         "User-Agent":
           "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
@@ -88,12 +93,14 @@ export default async (req, context) => {
         Connection: "keep-alive",
         "Upgrade-Insecure-Requests": "1",
         // Forward some original headers
-        ...(req.headers.get("referer") && {
-          Referer: req.headers.get("referer"),
+        ...(c.req.header("referer") && {
+          Referer: c.req.header("referer"),
         }),
       },
       body:
-        req.method !== "GET" && req.method !== "HEAD" ? req.body : undefined,
+        c.req.method !== "GET" && c.req.method !== "HEAD"
+          ? c.req.body
+          : undefined,
     });
 
     const contentType = response.headers.get("content-type") || "";
@@ -106,7 +113,7 @@ export default async (req, context) => {
       // Rewrite URLs in HTML to go through the proxy
       body = rewriteUrls(body, urlToProxy, proxyUrl);
 
-      return new Response(body, {
+      return c.html(body, {
         status: response.status,
         headers: {
           "Content-Type": contentType,
@@ -122,7 +129,7 @@ export default async (req, context) => {
       // Rewrite URLs in CSS
       body = rewriteCssUrls(body, urlToProxy, proxyUrl);
 
-      return new Response(body, {
+      return c.text(body, {
         status: response.status,
         headers: {
           "Content-Type": contentType,
@@ -134,7 +141,7 @@ export default async (req, context) => {
       // For non-HTML/CSS content (images, JS, etc.), return as-is
       const arrayBuffer = await response.arrayBuffer();
 
-      return new Response(arrayBuffer, {
+      return c.body(arrayBuffer, {
         status: response.status,
         headers: {
           "Content-Type": contentType,
@@ -151,7 +158,7 @@ export default async (req, context) => {
       error.message &&
       (error.message.includes("429") || error.message.includes("ECONNRESET"))
     ) {
-      return new Response(
+      return c.html(
         `
         <html>
           <head><title>Service Temporarily Unavailable</title></head>
@@ -166,16 +173,13 @@ export default async (req, context) => {
           </body>
         </html>
       `,
-        {
-          status: 503,
-          headers: { "Content-Type": "text/html" },
-        }
+        503
       );
     }
 
-    return new Response(JSON.stringify({ error: "Internal server error" }), {
-      status: 500,
-      headers: { "Content-Type": "application/json" },
-    });
+    return c.json({ error: "Internal server error" }, 500);
   }
-};
+});
+
+// Export the Netlify handler
+export default handle(app);
