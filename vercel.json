@@ -1,7 +1,10 @@
 {
   "version": 2,
-  "redirects": [{ "source": "/", "destination": "/api", "permanent": false }],
   "rewrites": [
+    {
+      "source": "/",
+      "destination": "/api"
+    },
     {
       "source": "/:path*",
       "destination": "https://nyaa.si/:path*"
