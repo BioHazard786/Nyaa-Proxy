@@ -1,6 +1,4 @@
-import { Hono } from "jsr:@hono/hono";
-import { handle } from "jsr:@hono/hono/netlify";
-
+// Modern ES Module version using native fetch and Web APIs
 // Function to rewrite URLs in HTML content
 function rewriteUrls(html, originalDomain, proxyDomain) {
   // Replace absolute URLs pointing to the original domain
@@ -63,12 +61,9 @@ function rewriteCssUrls(css, originalDomain, proxyDomain) {
   return css;
 }
 
-// Create Hono app
-const app = new Hono();
-
-// Handle all routes
-app.all("*", async (c) => {
-  const url = new URL(c.req.url);
+// Modern ES Module export with Web API
+export default async (req, context) => {
+  const url = new URL(req.url);
   const path = url.pathname;
   const queryParams = url.search;
 
@@ -77,12 +72,12 @@ app.all("*", async (c) => {
   const targetUrl = `${urlToProxy}${path || "/"}${queryParams || ""}`;
 
   // Get the current proxy URL (where this function is deployed)
-  const proxyUrl = `https://${c.req.header("host")}`;
+  const proxyUrl = `https://${req.headers.get("host")}`;
 
   try {
     // Add custom headers to appear more like a regular browser
     const response = await fetch(targetUrl, {
-      method: c.req.method,
+      method: req.method,
       headers: {
         "User-Agent":
           "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
@@ -93,14 +88,12 @@ app.all("*", async (c) => {
         Connection: "keep-alive",
         "Upgrade-Insecure-Requests": "1",
         // Forward some original headers
-        ...(c.req.header("referer") && {
-          Referer: c.req.header("referer"),
+        ...(req.headers.get("referer") && {
+          Referer: req.headers.get("referer"),
         }),
       },
       body:
-        c.req.method !== "GET" && c.req.method !== "HEAD"
-          ? c.req.body
-          : undefined,
+        req.method !== "GET" && req.method !== "HEAD" ? req.body : undefined,
     });
 
     const contentType = response.headers.get("content-type") || "";
@@ -113,7 +106,7 @@ app.all("*", async (c) => {
       // Rewrite URLs in HTML to go through the proxy
       body = rewriteUrls(body, urlToProxy, proxyUrl);
 
-      return c.html(body, {
+      return new Response(body, {
         status: response.status,
         headers: {
           "Content-Type": contentType,
@@ -129,7 +122,7 @@ app.all("*", async (c) => {
       // Rewrite URLs in CSS
       body = rewriteCssUrls(body, urlToProxy, proxyUrl);
 
-      return c.text(body, {
+      return new Response(body, {
         status: response.status,
         headers: {
           "Content-Type": contentType,
@@ -141,7 +134,7 @@ app.all("*", async (c) => {
       // For non-HTML/CSS content (images, JS, etc.), return as-is
       const arrayBuffer = await response.arrayBuffer();
 
-      return c.body(arrayBuffer, {
+      return new Response(arrayBuffer, {
         status: response.status,
         headers: {
           "Content-Type": contentType,
@@ -158,28 +151,26 @@ app.all("*", async (c) => {
       error.message &&
       (error.message.includes("429") || error.message.includes("ECONNRESET"))
     ) {
-      return c.html(
+      return new Response(
         `
         <html>
           <head><title>Service Temporarily Unavailable</title></head>
           <body>
             <h1>Service Temporarily Unavailable</h1>
             <p>The service is experiencing high traffic. Please try again in a few moments.</p>
-            <script>
-              setTimeout(() => {
-                window.location.reload();
-              }, 5000);
-            </script>
           </body>
         </html>
       `,
-        503
+        {
+          status: 503,
+          headers: { "Content-Type": "text/html" },
+        }
       );
     }
 
-    return c.json({ error: "Internal server error" }, 500);
+    return new Response(JSON.stringify({ error: "Internal server error" }), {
+      status: 500,
+      headers: { "Content-Type": "application/json" },
+    });
   }
-});
-
-// Export the Netlify handler
-export default handle(app);
+};

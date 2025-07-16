@@ -1,4 +1,8 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/f96ae740-f58f-48b2-826a-0caccece96e3/deploy-status)](https://app.netlify.com/projects/nyaa-proxy/deploys)
+# Nyaa Proxy
+
+> **⚠️ IMPORTANT NOTICE**
+>
+> All publicly hosted proxies have been nuked/blocked. It's highly recommended to host your own instance for reliable access. **Vercel** and **Netlify** are the preferred platforms for easy deployment.
 
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
@@ -19,8 +23,6 @@
     Easily deployable nyaa proxy to access nyaa from blocked regions powered by vercel rewrites
     <br />
     <br />
-    <a href="https://nyaa-proxy.netlify.app/">View Demo</a>
-    ·
     <a href="https://github.com/BioHazard786/Nyaa-Proxy/issues">Report Bug</a>
     ·
     <a href="https://github.com/BioHazard786/Nyaa-Proxy/issues">Request Feature</a>
@@ -61,7 +63,7 @@ To manually deploy the worker:
 
 ## Note
 
-If you want to proxy another url. Change the PROXYURL in `proxy.js`, `index.js`, `worker.js`, `vercel.json` and `netlify/functions/proxy.js` file.
+If you want to proxy another url. Change the PROXYURL in `proxy.js`, `api/index.js`, `worker.js`, `vercel.json` and `netlify/functions/proxy.js` file.
 
 ## License
 
@@ -69,17 +71,17 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Contact
 
-Mohd Zaid - [Telegram](https://t.me/LuLu786) - bzatch70@gmail.com
+Mohd Zaid - [Telegram](https://t.me/LuLu786) - <bzatch70@gmail.com>
 
 Project Link : [https://github.com/BioHazard786/Nyaa-Proxy](https://github.com/BioHazard786/Nyaa-Proxy)
 
-[contributors-shield]: https://img.shields.io/github/contributors/BioHazard786/Nyaa-Proxy.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/BioHazard786/Nyaa-Proxy.svg
 [contributors-url]: https://github.com/BioHazard786/Nyaa-Proxy/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/BioHazard786/Nyaa-Proxy.svg?style=for-the-badge
+[forks-shield]: https://img.shields.io/github/forks/BioHazard786/Nyaa-Proxy.svg
 [forks-url]: https://github.com/BioHazard786/Nyaa-Proxy/network/members
-[stars-shield]: https://img.shields.io/github/stars/BioHazard786/Nyaa-Proxy.svg?style=for-the-badge
+[stars-shield]: https://img.shields.io/github/stars/BioHazard786/Nyaa-Proxy.svg
 [stars-url]: https://github.com/BioHazard786/Nyaa-Proxy/stargazers
-[issues-shield]: https://img.shields.io/github/issues/BioHazard786/Nyaa-Proxy.svg?style=for-the-badge
+[issues-shield]: https://img.shields.io/github/issues/BioHazard786/Nyaa-Proxy.svg
 [issues-url]: https://github.com/BioHazard786/Nyaa-Proxy/issues
-[license-shield]: https://img.shields.io/github/license/BioHazard786/Nyaa-Proxy.svg?style=for-the-badge
+[license-shield]: https://img.shields.io/github/license/BioHazard786/Nyaa-Proxy.svg
 [license-url]: https://github.com/BioHazard786/Nyaa-Proxy/blob/master/LICENSE
