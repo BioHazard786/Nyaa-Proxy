@@ -1,11 +1,6 @@
 {
   "version": 2,
-  "functions": {
-    "index.js": {
-      "memory": 1024,
-      "maxDuration": 10
-    }
-  },
+  "redirects": [{ "source": "/", "destination": "/api", "permanent": false }],
   "rewrites": [
     {
       "source": "/:path*",
