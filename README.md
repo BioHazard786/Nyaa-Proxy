@@ -108,27 +108,42 @@ List:
 netlify env:list
 ```
 
-## Docker Usage
+## Docker Usage (commands only)
 
-Build container:
+Using the included docker-compose.yml (expects .env in the same directory):
+
+```bash
+# start (detached)
+docker compose up -d
+
+# start and build
+docker compose up -d --build
+
+# stop and remove containers
+docker compose down
+
+# stream service logs
+docker compose logs -f nyaa-proxy
+```
+
+Run the official image without compose:
+
+```bash
+docker run --env-file .env -p 8000:8000 ghcr.io/BioHazard786/nyaa-proxy:latest
+```
+
+Build and run locally:
 
 ```bash
 docker build -t nyaa-proxy .
-```
-
-Run container:
-
-```bash
 docker run --env-file .env -p 8000:8000 nyaa-proxy
 ```
 
-OR
+Override specific env vars on the CLI:
 
 ```bash
 docker run -e PROXY_URL=https://example.com -e PORT=8000 -e PROXY_RSS_PAGE=true -p 8000:8000 nyaa-proxy
 ```
-
-The app reads from `process.env.PROXY_URL` and `process.env.PROXY_RSS_PAGE`.
 
 ## Cloudflare Workers Note
 

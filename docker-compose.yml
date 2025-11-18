@@ -1,0 +1,9 @@
+version: "3.8"
+services:
+  nyaa-proxy:
+    image: ghcr.io/BioHazard786/nyaa-proxy:latest
+    env_file:
+      - .env
+    ports:
+      - "${PORT:-8000}:${PORT:-8000}"
+    restart: unless-stopped
