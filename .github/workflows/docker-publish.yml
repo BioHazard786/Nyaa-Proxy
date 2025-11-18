@@ -6,6 +6,7 @@ on:
             - "v*"
 
 env:
+    # Will be overridden by computed lowercase value below
     IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/nyaa-proxy
 
 jobs:
@@ -35,6 +36,13 @@ jobs:
               id: vars
               run: echo "VERSION=${GITHUB_REF_NAME}" >> $GITHUB_OUTPUT
 
+            - name: Compute lowercase image name
+              id: imagename
+              shell: bash
+              run: |
+                  owner_lc="${GITHUB_REPOSITORY_OWNER,,}"
+                  echo "name=ghcr.io/${owner_lc}/nyaa-proxy" >> "$GITHUB_OUTPUT"
+
             - name: Build and push image
               uses: docker/build-push-action@v5
               with:
@@ -42,8 +50,8 @@ jobs:
                   platforms: linux/amd64,linux/arm64
                   push: true
                   tags: |
-                      ${{ env.IMAGE_NAME }}:${{ steps.vars.outputs.VERSION }}
-                      ${{ env.IMAGE_NAME }}:latest
+                      ${{ steps.imagename.outputs.name }}:${{ steps.vars.outputs.VERSION }}
+                      ${{ steps.imagename.outputs.name }}:latest
                   labels: |
                       org.opencontainers.image.source=${{ github.repository }}
                       org.opencontainers.image.version=${{ steps.vars.outputs.VERSION }}
@@ -52,6 +60,6 @@ jobs:
 
             - name: Publish summary
               run: |
-                  echo "Published: ${{ env.IMAGE_NAME }}:${{ steps.vars.outputs.VERSION }}"
-                  echo "Also tagged: ${{ env.IMAGE_NAME }}:latest"
-                  echo "Pull with: docker pull ${{ env.IMAGE_NAME }}:${{ steps.vars.outputs.VERSION }}"
+                  echo "Published: ${{ steps.imagename.outputs.name }}:${{ steps.vars.outputs.VERSION }}"
+                  echo "Also tagged: ${{ steps.imagename.outputs.name }}:latest"
+                  echo "Pull with: docker pull ${{ steps.imagename.outputs.name }}:${{ steps.vars.outputs.VERSION }}"
