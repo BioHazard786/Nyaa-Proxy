@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   nyaa-proxy:
-    image: ghcr.io/BioHazard786/nyaa-proxy:latest
+    image: ghcr.io/biohazard786/nyaa-proxy:latest
     env_file:
       - .env
     ports:

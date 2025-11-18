@@ -129,7 +129,7 @@ docker compose logs -f nyaa-proxy
 Run the official image without compose:
 
 ```bash
-docker run --env-file .env -p 8000:8000 ghcr.io/BioHazard786/nyaa-proxy:latest
+docker run --env-file .env -p 8000:8000 ghcr.io/biohazard786/nyaa-proxy:latest
 ```
 
 Build and run locally:
